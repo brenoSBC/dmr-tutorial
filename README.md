@@ -72,6 +72,7 @@ de:
 ![imagem1](image1.png)
 
 para:
+
 ![imagem2](image2.png)
 
 ---
