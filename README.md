@@ -65,8 +65,11 @@ export SLURM_INCLUDE=<caminho_para_o_slurm_clonado>
 Please note that the current version of dmr@jobs was built primarily to support Slurm 23.02.7 and that versions other than this may not work or require adjustments
 ```text
 vá para dmr/src/dmr_slurm.c
-```
+é necessário modificar a linha hostlist:
 
+de:
+```
+![imagem1](imagem1.png)
 
 ---
 
