@@ -31,8 +31,6 @@ git clone https://gitlab.bsc.es/siserte/dmr.git
 
 ---
 
-## 3. Dependência do Slurm
-
 Ensure that your compiler can also find the include header files of Slurm on its search paths or set the SLURM_INCLUDE environment variable to point to them. If they are not exposed on your system, you may be able to get around the problem by getting them from the appropriate version of Slurm's GitHub page.
 
 Clone o Slurm:
@@ -64,8 +62,9 @@ export SLURM_INCLUDE=<caminho_para_o_slurm_clonado>
 
 Please note that the current version of dmr@jobs was built primarily to support Slurm 23.02.7 and that versions other than this may not work or require adjustments
 
-vá para dmr/src/dmr_slurm.c
-é necessário modificar a linha hostlist:
+Vá para dmr/src/dmr_slurm.c
+
+É necessário modificar a linha hostlist:
 
 de:
 
@@ -77,7 +76,7 @@ para:
 
 ---
 
-## 6. Compilando o DMR
+Agora é possível dar make na pasta dmr sem erros
 
 Entre no diretório do DMR e execute:
 
@@ -96,11 +95,7 @@ export LD_LIBRARY_PATH=$DMR_PATH/lib:$LD_LIBRARY_PATH
 export PATH=$DMR_PATH/bin:$PATH
 ```
 
-Recarregue novamente o ambiente:
 
-```bash
-source ~/.bashrc
-```
 
 ---
 
