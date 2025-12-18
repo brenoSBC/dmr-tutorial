@@ -56,6 +56,7 @@ export SLURM_LIB=/usr/lib/x86_64-linux-gnu/slurm-wlm
 export LD_LIBRARY_PATH=$SLURM_LIB:$LD_LIBRARY_PATH
 export SLURM_INCLUDE=<caminho_para_o_slurm_clonado>
 ```
+![slurmexport](export_slurm.png)
 
 ---
 
@@ -94,6 +95,7 @@ export DMR_PATH=<localização_do_diretório_dmr>
 export LD_LIBRARY_PATH=$DMR_PATH/lib:$LD_LIBRARY_PATH
 export PATH=$DMR_PATH/bin:$PATH
 ```
+![dmrexport](export_dmr.png)
 
 
 
