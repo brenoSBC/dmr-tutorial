@@ -88,7 +88,7 @@ make
 ---
 
 
-Adicione também ao `~/.bashrc`:
+Adicione também ao ~/.bashrc:
 
 ```bash
 export DMR_PATH=<localização_do_diretório_dmr>
