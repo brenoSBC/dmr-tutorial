@@ -69,7 +69,7 @@ vá para dmr/src/dmr_slurm.c
 
 de:
 ```
-![imagem1](imagem1.png)
+![imagem1](image1.png)
 
 ---
 
