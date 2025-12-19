@@ -107,6 +107,9 @@ Faça make
 
 
 Altere o sbatch para adicionar o flag -x, caso contrario, nao sera possivel encontrar o .so do dmr com o arquivo no repositorio 
-ou simplesmente:
+ou simplesmente no comando:
+cmd="$DMR_PATH/bin/dmr_wrapper prterun --host $NODELIST_WITH_COUNTS -np 2 --prtemca ras ^slurm --prtemca plm ^slurm -x LD_LIBRARY_PATH=/home/worker/TESTE/dmr/lib:$LD_LIBRARY_PATH ./hello-world"
+adicione:
+-x LD_LIBRARY_PATH=caminho/dmr/lib:$LD_LIBRARY_PATH
 
 
