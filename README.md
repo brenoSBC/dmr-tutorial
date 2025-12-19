@@ -106,4 +106,7 @@ Em dmr/examples/hello-world-dmr/ altere o Makefile para o que está neste reposi
 Faça make
 
 
+Altere o sbatch para adicionar o flag -x, caso contrario, nao sera possivel encontrar o .so do dmr com o arquivo no repositorio 
+ou simplesmente:
+
 
