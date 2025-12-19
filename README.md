@@ -101,4 +101,9 @@ export PATH=$DMR_PATH/bin:$PATH
 
 ---
 
+Em dmr/examples/hello-world-dmr/ altere o Makefile para o que está neste repositório
+
+Faça make
+
+
 
