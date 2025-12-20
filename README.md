@@ -1,3 +1,43 @@
+## OpenMPI 5
+
+```bash
+wget https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.9.tar.gz
+tar -xf openmpi-5.0.9.tar.gz
+cd openmpi-5.0.9
+./configure --prefix=<installation_path>
+make -j$(nproc)
+make install
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## OpenMPI 5
 
