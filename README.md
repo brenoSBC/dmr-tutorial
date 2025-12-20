@@ -1,43 +1,3 @@
-## OpenMPI 5
-
-```bash
-wget https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.9.tar.gz
-tar -xf openmpi-5.0.9.tar.gz
-cd openmpi-5.0.9
-./configure --prefix=<installation_path>
-make -j$(nproc)
-make install
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## OpenMPI 5
 
@@ -51,7 +11,7 @@ cd openmpi-5.0.9
 ```
 
 ```bash
-./configure --prefix=<caminho_onde_instalar>
+./configure --prefix=<install_path>
 ```
 
 ```bash
@@ -63,7 +23,7 @@ make install
 
 ## DMR
 
-Clone o repositório do DMR:
+Clone the DMR repository:
 
 ```bash
 git clone https://gitlab.bsc.es/siserte/dmr.git
@@ -73,7 +33,7 @@ git clone https://gitlab.bsc.es/siserte/dmr.git
 
 Ensure that your compiler can also find the include header files of Slurm on its search paths or set the SLURM_INCLUDE environment variable to point to them. If they are not exposed on your system, you may be able to get around the problem by getting them from the appropriate version of Slurm's GitHub page.
 
-Clone o Slurm:
+If necessary, clone Slurm to obtain the headers:
 
 ```bash
 git clone https://github.com/SchedMD/slurm.git
@@ -89,12 +49,12 @@ git checkout slurm-23.11
 ```
 ---
 
-Adicione no ~/.bashrc:
+Add the following lines to your ~/.bashrc:
 
 ```bash
 export SLURM_LIB=/usr/lib/x86_64-linux-gnu/slurm-wlm
 export LD_LIBRARY_PATH=$SLURM_LIB:$LD_LIBRARY_PATH
-export SLURM_INCLUDE=<caminho_para_o_slurm_clonado>
+export SLURM_INCLUDE=<path_to_cloned_slurm>
 ```
 ![slurmexport](images/export_slurm.png)
 
@@ -103,23 +63,26 @@ export SLURM_INCLUDE=<caminho_para_o_slurm_clonado>
 
 Please note that the current version of dmr@jobs was built primarily to support Slurm 23.02.7 and that versions other than this may not work or require adjustments
 
-Vá para dmr/src/dmr_slurm.c
+Open the file:
+```bash
+dmr/src/dmr_slurm.c
+```
 
-É necessário modificar a linha hostlist:
+Modify the hostlist line.
 
-de:
+Change from:
 
 ![imagem1](images/image1.png)
 
-para:
+To:
 
 ![imagem2](images/image2.png)
 
 ---
 
-Agora é possível dar make na pasta dmr sem erros
+After this modification, DMR should compile correctly.
 
-Entre no diretório do DMR e execute:
+Enter the DMR directory and run:
 
 ```bash
 make
@@ -128,10 +91,10 @@ make
 ---
 
 
-Adicione também ao ~/.bashrc:
+Add the following to your ~/.bashrc:
 
 ```bash
-export DMR_PATH=<localização_do_diretório_dmr>
+export DMR_PATH=<path_to_dmr_directory>
 export LD_LIBRARY_PATH=$DMR_PATH/lib:$LD_LIBRARY_PATH
 export PATH=$DMR_PATH/bin:$PATH
 ```
@@ -141,15 +104,37 @@ export PATH=$DMR_PATH/bin:$PATH
 
 ---
 
-Em dmr/examples/hello-world-dmr/ altere o Makefile para o que está neste repositório
+## Hello World Example
 
-Faça make
+Go to the example directory:
+
+```bash
+cd dmr/examples/hello-world-dmr
+```
+
+Run:
+
+```bash
+make
+```
+
+Modify the sbatch script to add the -x flag; otherwise, the DMR shared library (.so) will not be found when running from the repository.
+
+In the command below:
+
+```bash
+cmd="$DMR_PATH/bin/dmr_wrapper prterun --host $NODELIST_WITH_COUNTS -np 2 --prtemca ras ^slurm --prtemca plm ^slurm ./hello-world"
+```
+
+add the -x flag to export LD_LIBRARY_PATH
+
+```bash
+cmd="$DMR_PATH/bin/dmr_wrapper prterun --host $NODELIST_WITH_COUNTS -np 2 --prtemca ras ^slurm --prtemca plm ^slurm -x LD_LIBRARY_PATH=<path_to_dmr>/lib:$LD_LIBRARY_PATH ./hello-world"
+```
 
 
-Altere o sbatch para adicionar o flag -x, caso contrario, nao sera possivel encontrar o .so do dmr com o arquivo no repositorio 
-ou simplesmente no comando:
-cmd="$DMR_PATH/bin/dmr_wrapper prterun --host $NODELIST_WITH_COUNTS -np 2 --prtemca ras ^slurm --prtemca plm ^slurm -x LD_LIBRARY_PATH=/home/worker/TESTE/dmr/lib:$LD_LIBRARY_PATH ./hello-world"
-adicione:
--x LD_LIBRARY_PATH=caminho/dmr/lib:$LD_LIBRARY_PATH
+```bash
+sbatch batch_submit.sbatch
+```
 
 
