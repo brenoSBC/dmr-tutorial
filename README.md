@@ -137,4 +137,10 @@ cmd="$DMR_PATH/bin/dmr_wrapper prterun --host $NODELIST_WITH_COUNTS -np 2 --prte
 sbatch batch_submit.sbatch
 ```
 
+You can now see a new node created by the DMR runtime.
+For the other example (test-dmr-at-jobs/sleepOf), the steps are the same. However, in the other test, it will be possible to see the addition and removal of nodes.
 
+For a more complete explanation and more compilation options:
+```bash
+https://gitlab.bsc.es/siserte/dmr/-/tree/dmr@jobs
+```
